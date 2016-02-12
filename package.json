@@ -1,0 +1,30 @@
+{
+  "name": "webservice-cells",
+  "version": "0.0.0",
+  "description": "__Cell webservice voor Service Framework op Vault.net in NodeJS__",
+  "main": "webservice-cells.js",
+  "dependencies": {
+    "elasticsearch": "~8.2.0",
+    "lodash": "~2.4.1",
+    "ngeohash": "~0.6.0",
+    "node-restify-swagger": "~0.1.8",
+    "node-restify-validation": "~1.0.4",
+    "node-uuid": "~1.4.3",
+    "node-zookeeper-client": "~0.2.2",
+    "restify": "~4.0.3",
+    "validator": "~4.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Group2000/webservice-cells.git"
+  },
+  "author": "",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/Group2000/webservice-cells/issues"
+  }
+}

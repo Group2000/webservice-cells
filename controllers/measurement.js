@@ -506,7 +506,7 @@ var measurementController={
 	        });
 		}
 
-		var datePrecision=parseInt(req.params.datePrecision) || 100;
+		var datePrecision=parseInt(req.params.datePrecision) || 365;
 		var startDate,endDate;
 		var range={
 			timestamp:{

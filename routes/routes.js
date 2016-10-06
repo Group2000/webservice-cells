@@ -235,7 +235,7 @@ function Routes(server) {
 					radio:{isRequired:false,isIn:['GSM','UMTS','LTE']},
 					band:{isRequired:false,isInt:true},
 					channel:{isRequired:false,isInt:true},
-					timestamp:{isRequired:false,isDate:true},
+					timestamp:{isRequired:false},
 					source:{isRequired:false},
 					measurement:{isRequired:false,isBoolean:true},
 					serving:{isRequired:false,isBoolean:true},
@@ -418,7 +418,7 @@ function Routes(server) {
 					// area:{isRequired:false,isInt:true},
 					uuid:{isRequired:false},
 					radio:{isRequired:false,isIn:['GSM','UMTS','LTE']},
-					timestamp:{isRequired:false,isDate:true},
+					timestamp:{isRequired:false},
 					serving:{isRequired:false,isBoolean:true},
 					geohashPrecision:{isRequired:false,isInt:true,description:'OPTIONAL: Geohash precision value: between 1 (~ 5000 x 5000 km) and 12 (~ 4 x 2 cm). Default value=8 (~ 40 x 20 m)'},
 					datePrecision:{isRequired:false,isInt:true,description:'OPTIONAL: Number of days around timestamp in which measurement is taken. Default value=100 (between 100 days before and 100 days after timestamp)'}

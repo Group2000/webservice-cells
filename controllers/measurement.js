@@ -824,6 +824,7 @@ var measurementController={
 		//req.params.measurement=true;
 		var precision=parseInt(req.params.geohashPrecision) || 7;
 
+		m.push({range:range});
 		
   		m.push({
   			geohash_cell:{

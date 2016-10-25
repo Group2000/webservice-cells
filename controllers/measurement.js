@@ -14,14 +14,29 @@ var geohash=require('ngeohash');
 function getBestMeasurement(req, callback){
 	req.params.measurement=true;
 
-	var timestamp;
-	if (req.params.timestamp != undefined && req.params.timestamp != "")
-		timestamp = req.params.timestamp;
-	else
-		timestamp = new Date().getTime();
+	 var datePrecision=parseInt(req.params.datePrecision) || 100;
+     var startDate,endDate;
+     var range={
+             timestamp:{
+             }
+     }
+     if (req.params.timestamp != undefined && req.params.timestamp != ""){
 
+             range.timestamp.lte=parseInt(req.params.timestamp)+(datePrecision*24*60*60*1000);
+             range.timestamp.gte=parseInt(req.params.timestamp)-(datePrecision*24*60*60*1000);
+             endDate=new Date(range.timestamp.lte);
+             startDate=new Date(range.timestamp.gte);
+     }
+     else{
+             var timestamp = new Date().getTime();
+             range.timestamp.gte=timestamp-(datePrecision*24*60*60*1000);
+             endDate=new Date();
+             startDate=new Date(range.timestamp.gte);
+
+     }
 
 	var m = [];
+	m.push({range:range});
 	  
 	for(var key in req.params){
 	  	switch(key){
@@ -30,6 +45,7 @@ function getBestMeasurement(req, callback){
 	  		case '_':
 	  		case 'apiKey':
 	  		case 'size':
+	  		case 'datePrecision':
 	  			break;
 	  		default:
 		  		var term={term:{}};
@@ -702,15 +718,31 @@ var measurementController={
 	getCell: function(req,res){
 
 		//curl -X GET https://localhost:3000/cellmeasurements-dev?mcc=204
-		var timestamp;
-		if (req.params.timestamp != undefined && req.params.timestamp != "")
-			timestamp = req.params.timestamp;
-		else
-			timestamp = new Date().getTime();
 		req.params.measurement=false;
+		var datePrecision=parseInt(req.params.datePrecision) || 100;
+        var startDate,endDate;
+        var range={
+                timestamp:{
+                }
+        }
+        var timestamp;
+        if (req.params.timestamp != undefined && req.params.timestamp != ""){
+                timestamp = parseInt(req.params.timestamp);
+                range.timestamp.lte=timestamp+(datePrecision*24*60*60*1000);
+                range.timestamp.gte=timestamp-(datePrecision*24*60*60*1000);
+                endDate=new Date(range.timestamp.lte);
+                startDate=new Date(range.timestamp.gte);
+        }
+        else{
+                timestamp = new Date().getTime();
+                range.timestamp.gte=timestamp-(datePrecision*24*60*60*1000);
+                endDate=new Date();
+                startDate=new Date(range.timestamp.gte);
+        }
 
 		var m = [];
-		  
+		m.push({range:range});
+  
 		for(var key in req.params){
 		  	switch(key){
 		  		case 'timestamp':

@@ -239,7 +239,8 @@ function Routes(server) {
 					source:{isRequired:false},
 					measurement:{isRequired:false,isBoolean:true},
 					serving:{isRequired:false,isBoolean:true},
-					size:{isRequired:false,isInt:true,description:'Max number of hits to return'}
+					size:{isRequired:false,isInt:true,description:'Max number of hits to return'},
+					datePrecision:{isRequired:false,isInt:true,description:'OPTIONAL: Number of days around timestamp in which measurement is taken. Default value=100 (between 100 days before and 100 days after timestamp)'}
 				}
 			}
 		},

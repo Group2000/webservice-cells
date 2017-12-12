@@ -3,7 +3,7 @@ var restify = require('restify');
 var restifySwagger = require('node-restify-swagger');
 var restifyValidation = require('node-restify-validation');
 var zookeeper = require('node-zookeeper-client');
-var nodeuuid = require('node-uuid');
+var nodeuuid = require('uuid/v1');
 var url = require('url');
 var fs = require('fs');
 var logger = require('./utils/logger');
@@ -11,7 +11,7 @@ var logger = require('./utils/logger');
 var config = require('./config/config');
 
 var curTime = new Date().getTime()
-var uuid = nodeuuid.v1();
+var uuid = nodeuuid();
 var zoopathService = '/dropwizard/services/prod_v1_' + config.service.name;
 var zoopathInstance = '/dropwizard/services/prod_v1_'+ config.service.name  + '/' +uuid;
 var https_options={}

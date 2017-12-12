@@ -9,7 +9,7 @@
     "ngeohash": "~0.6.0",
     "node-restify-swagger": "~0.1.8",
     "node-restify-validation": "~1.0.4",
-    "node-uuid": "~1.4.3",
+    "uuid": "~3.1.0",
     "node-zookeeper-client": "~0.2.2",
     "restify": "~4.3.2",
     "validator": "~4.2.0"

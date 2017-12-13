@@ -71,9 +71,33 @@ function addZookeeperInstance(){
 
 function addZookeeper(callback){
     //adds Service to zookeeper under <servicename>/UUID
-     logger.log('info','Creating Zookeeper service '  + config.service.name+ '/' +uuid ); 
+     logger.log('info','Creating Zookeeper service '  + config.service.name+ '/' +uuid );
+     
+     kClient.exists("/dropwizard",function(err,ret){
+         if(!ret){
+        	 zkClient.create("/dropwizard", function (error) {
+	         if (error) {
+	        	 logger.log('info','Failed to create node: %s due to: %s.', "/dropwizard", error);
+	         } else {
+	        	 logger.log('info','Node: %s is successfully created.', "/dropwizard");
+	         }
+        	 });
+         }
+    });
+     
+     kClient.exists("/dropwizard/services",function(err,ret){
+         if(!ret){
+        	 zkClient.create("/dropwizard/services", function (error) {
+	         if (error) {
+	        	 logger.log('info','Failed to create node: %s due to: %s.', "/dropwizard/services", error);
+	         } else {
+	        	 logger.log('info','Node: /dropwizard/services is successfully created.');
+	         }
+        	 });
+         }
+    });     
     zkClient.exists(zoopathService,function(err,ret){
-        if(!ret){
+        if(!ret){      	
             zkClient.create(zoopathService,function(err,ret){
                 addZookeeperInstance();
             });

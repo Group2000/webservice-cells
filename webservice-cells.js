@@ -73,7 +73,7 @@ function addZookeeper(callback){
     //adds Service to zookeeper under <servicename>/UUID
      logger.log('info','Creating Zookeeper service '  + config.service.name+ '/' +uuid );
      
-     kClient.exists("/dropwizard",function(err,ret){
+     zkClient.exists("/dropwizard",function(err,ret){
          if(!ret){
         	 zkClient.create("/dropwizard", function (error) {
 	         if (error) {
@@ -85,7 +85,7 @@ function addZookeeper(callback){
          }
     });
      
-     kClient.exists("/dropwizard/services",function(err,ret){
+     zkClient.exists("/dropwizard/services",function(err,ret){
          if(!ret){
         	 zkClient.create("/dropwizard/services", function (error) {
 	         if (error) {

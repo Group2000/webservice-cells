@@ -55,7 +55,8 @@ var providerController={
 		    aggs:{
 		       	providers:{
 		       		terms:{
-		       			field:"provider"
+		       			field:"provider",
+		       			size: 30
 		       		}
 		       	}	
 		    }
